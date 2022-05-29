@@ -1,0 +1,42 @@
+<aura:component controller="DataTableApexClass" implements="force:lightningQuickAction,force:hasRecordId" >
+  <aura:attribute name="isOpen" type="boolean" default="false"/> 
+    <aura:if isTrue="{!v.isOpen}">
+            <!--###### MODAL BOX Start######--> 
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{!c.closeModel}"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Update Record</h2>
+                    </header>
+                    <!--###### MODAL BOX BODY Part Start######-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+    <lightning:recordEditForm aura:id="recordEditForm"
+                           objectApiName="Account"
+                           onsuccess = "{!c.handleSuccess}"   >
+        <lightning:messages />
+        <lightning:inputField fieldName="Name" />
+        <lightning:inputField fieldName="Site" />
+        <lightning:inputField fieldName="Rating" />
+        <lightning:inputField fieldName="Active__c" />
+        <lightning:button class="slds-m-top_small" type="submit" label="Create new" />
+          <lightning:button class="slds-m-top_small"
+                                             variant="neutral" 
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{! c.closeModel }"/>
+    </lightning:recordEditForm>
+            </div>
+                </div>
+            </section>
+        </aura:if>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <!--###### MODAL BOX Part END Here ######-->
+            
+        
+              
+</aura:component>

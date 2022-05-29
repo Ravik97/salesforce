@@ -1,0 +1,71 @@
+<aura:component controller ="csvDownloadCtrl">          
+	  
+            
+    <aura:handler name="init" value="{!this}" action="{!c.loadContactList}"/> 
+
+    <aura:attribute name="ListOfContact" type="contact[]"/> 
+
+
+    <lightning:tabset selectedTabId="two">
+        
+        <lightning:tab label="Inline Editing" id="two">
+       
+  <div class="slds-m-around--xx-large">   
+    <button class="slds-button slds-button--brand" onclick="{!c.downloadCsv}">Export to Excel</button> <br/><br/>
+
+<table class="slds-table slds-table--bordered slds-table--cell-buffer">
+  <thead>
+    <tr class="slds-text-title--caps">
+
+        <th class="slds-is-sortable slds-text-title--caps" scope="col">
+          <span class="slds-truncate" title="Name">First Name</span>  
+       </th>
+
+       <th class="slds-is-sortable slds-text-title--caps" scope="col">
+          <span class="slds-truncate" title="Last Name">Last Name</span>
+       </th>
+
+      <th class="slds-is-sortable slds-text-title--caps" scope="col">
+          <span class="slds-truncate" title="Department">Department</span>
+       </th>
+
+      <th scope="col">
+        <div class="slds-truncate" title="MobilePhone">Mobile Phone</div>
+      </th>
+    </tr>
+  </thead>
+    <!--table body start, 
+      Iterate contact list as a <tr>
+     -->
+  <tbody>
+    <aura:iteration items="{!v.ListOfContact}" var="con">  
+    <tr>
+      <th scope="row">
+        <div class="slds-truncate" title="{!con.FirstName}">{!con.FirstName}</div>
+      </th>
+
+      <th scope="row">
+        <div class="slds-truncate" title="{!con.LastName}">{!con.LastName}</div>
+      </th>
+
+       <th scope="row">
+        <div class="slds-truncate" title="{!con.Department}">{!con.Department}</div>
+      </th>
+
+       <th scope="row">
+        <div class="slds-truncate" title="{!con.MobilePhone}">{!con.MobilePhone}</div>
+      </th> 
+    </tr>
+
+    </aura:iteration>
+
+  </tbody>
+</table> 
+    </div>
+             </lightning:tab>
+        <lightning:tab label="Bulk update" id="one">
+            One Content !
+        </lightning:tab>
+        </lightning:tabset>
+          
+</aura:component>

@@ -1,0 +1,12 @@
+<aura:component implements="force:appHostable" >  
+      
+    <aura:attribute name="AccountId" type="String"/>  
+      
+    <div class="slds-box slds-theme_default">  
+          
+        <lightning:input type = "text" value = "{! v.AccountId }" label = "Account Id"/><br/>  
+        <lightning:button label = "Create Opportunity" variant = "brand" onclick = "{! c.navigateToNewRecForm }"/>  
+      
+    </div>  
+      
+</aura:component>

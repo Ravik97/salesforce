@@ -1,0 +1,11 @@
+<aura:component>
+    <aura:attribute name="recordId" type="String" />
+<aura:attribute name="opty" type="Opportunity" default="{'sobjectType': 
+ 'Opportunity'}" />
+<aura:attribute name="recordLoadError" type="String" />
+
+<force:recordData aura:id="recordLoader" recordId="{!v.recordId}"
+    fields="Name"
+    targetFields="{!v.opty}" targetError="{!v.recordLoadError}" />
+    <lightning:button label='click me' onclick="{!c.handleClick}"/>
+</aura:component>

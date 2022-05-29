@@ -1,0 +1,63 @@
+<aura:component controller="DataTableApexClass"  implements="flexipage:availableForAllPageTypes,force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName">
+    
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="errors" type="Object" default="[]"/>
+    <aura:attribute name="draftValues" type="Object" default="[]"/>
+    <aura:attribute name="options" type="List" default="['Construction','Consulting','Energy','Education']"/>
+        <aura:attribute name="ltngSelectedvalue" type="string" default="Energy"/>
+    <aura:attribute name="colors" type="List" default="['Hot','Warm','Cold']"/>
+    <aura:attribute name="ratingSelectedvalue" type="string" default="Warm"/>
+    <aura:attribute name="AccountId" type="Object"/>
+    <aura:attribute name="showanother" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this }" action="{!c.init }"/>
+     <aura:attribute name="shownew" type="Boolean" default="false"/>
+            
+    <aura:registerEvent name="loadMyEvent" type="c:Result"/>     
+    <div class="slds-p-around_medium">
+        <h1 class="slds-text-heading_large">Inline edit Data table</h1>
+    </div>
+           
+           <!-- <div class="slds-size_1-of-4" >
+     
+            <lightning:select name="selectItem1" label="Industry"  onchange="{!c.doSomething}" value="{!v.ltngSelectedvalue}" aura:id="statusPicklist">
+        <aura:iteration items="{!v.options}" var="opt">
+  <option value="{!opt}">{!opt}</option>
+    </aura:iteration>
+    </lightning:select>
+                </div>
+            <div class="slds-size_1-of-4" >
+     
+            <lightning:select name="selectItem2" label="Rating"  onchange="{!c.doSomething}" value="{!v.ratingSelectedvalue}" aura:id="ratingPicklist">
+        <aura:iteration items="{!v.colors}" var="color">
+  <option value="{!color}">{!color}</option>
+    </aura:iteration>
+    </lightning:select>
+                </div>-->
+             
+            
+    <!-- the container element determine the height of the datatable -->
+    <div style="height: 300px">
+        <lightning:datatable aura:id="dtTable"
+                             columns="{! v.columns }"
+                             data="{! v.data }"
+                             keyField="Id"
+                             errors="{! v.errors }"
+                             onrowselection="{! c.getSelectedName }"
+                             draftValues="{! v.draftValues }"
+                             onsave="{! c.handleSaveEdition }"
+                             />
+    </div>
+    
+    
+   <lightning:button label="update record" onclick="{!c.navigateToNewRecForm}" class="slds-button slds-button--brand"/>
+  <aura:if isTrue="{!v.showanother}">
+      <c:demoModal AccountId="{!v.AccountId}" isOpen="true"/>
+    </aura:if>
+    <lightning:button label="New record" onclick="{!c.createnewrecord}" class="slds-button slds-button--brand"/>
+  <aura:if isTrue="{!v.shownew}">
+      <c:demoModal isnewOpen="true"/>
+    </aura:if>
+    
+    
+</aura:component>

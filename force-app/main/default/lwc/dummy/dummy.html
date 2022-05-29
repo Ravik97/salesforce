@@ -1,0 +1,21 @@
+<template>
+    <table>
+     <thead>   <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Over</th>
+            <th>Name</th>
+        </tr></thead>
+       <tbody >
+         <template for:each={lstAccounts} for:item="acc">
+     <tr key={acc.Id} >
+      <td><lightning-badge  label={acc.Id}></lightning-badge></td>
+      <td><lightning-badge label={acc.Over}></lightning-badge></td>
+       <td ><lightning-input id={acc.Name} label='2' type="date" onchange={changehandler}  variant="label-hidden"></lightning-input></td>
+       <td><lightning-badge label={acc.Name}></lightning-badge></td>
+    </tr>
+</template>
+</tbody>
+</table>
+<lightning-button label='click' onclick={navigateToTab}></lightning-button>
+</template>
